@@ -1,6 +1,6 @@
-public class TestTree{
+public class TestBinaryTree{
     public static void main(String[] args) {
-        MyTree<String> newTree = new MyTree<String>();
+        BinaryTree<String> newTree = new BinaryTree<String>();
         newTree.insertElem("10");
         newTree.insertElem("20");
         newTree.insertElem("5");
@@ -13,7 +13,7 @@ public class TestTree{
         System.out.println("Size: " + newTree.size);
         System.out.println("-----------------");
 
-        MyTree<String> second = new MyTree<String>(newTree);
+        BinaryTree<String> second = new BinaryTree<String>(newTree);
         second.printTree(second.rootNode);
         System.out.println("-----------------");
         System.out.println("Size: " + second.size);

@@ -1,4 +1,4 @@
-public class MyTree<T extends Comparable<T>>{
+public class BinaryTree<T extends Comparable<T>>{
 
     class Node<T extends Comparable<T>>{
         T data;
@@ -16,10 +16,10 @@ public class MyTree<T extends Comparable<T>>{
     Node<T> rootNode;
     int size;
 
-    public MyTree() {
+    public BinaryTree() {
     }
 
-    public MyTree(MyTree<T> copyOfTree) {
+    public BinaryTree(BinaryTree<T> copyOfTree) {
         rootNode = new Node<T>(copyOfTree.rootNode.data);
         size++;
         copyNode(rootNode, copyOfTree.rootNode);
