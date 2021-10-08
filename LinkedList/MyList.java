@@ -97,7 +97,7 @@ public class MyList<T>{
         }
 
         Node<T> prevNode = new Node<T>();
-        while(currentNode.data != data){
+        while(currentNode.data.equals(data)){
             prevNode = currentNode;
             currentNode = currentNode.next;
             if(currentNode.data == data){
