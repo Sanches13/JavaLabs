@@ -99,6 +99,10 @@ public class MyList<T>{
         Node<T> prevNode = new Node<T>();
         while(currentNode.data.equals(data)){
             prevNode = currentNode;
+	    if(currentNode.next == null){
+		System.out.println("Element is not found");
+		return;
+	    }
             currentNode = currentNode.next;
             if(currentNode.data == data){
                 if(tail.data == data){
