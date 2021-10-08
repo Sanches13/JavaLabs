@@ -1,20 +1,150 @@
 public class TestSimpleSort{
-    public static void printArray(int array[]){
-        for(int i = 0; i < array.length; i++)
-            System.out.print(array[i] + " ");
-        System.out.println();
-    }
-
     public static void main(String[] args) {
-        //String[] array = {"b","a","j","d","b","a","j","k","d","a","j","s","d"};
-        int array[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-        printArray(array);
+        int input[] = new int[50];
+
+        System.out.println("Input data:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = 50 - i;
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
+
         try {
-            SimpleSort.selectionSortSequence(array, 1, 8);
+            SimpleSort.bubbleSortInt(input);
         }
         catch(Exception e){
+            System.out.println(e);
         }
-        printArray(array);
 
+        System.out.println("Data sorted by bubbleSort:");
+        for(int i = 0; i < input.length; i++)
+            System.out.print(input[i] + " ");
+        System.out.println();
+
+        for(int i = 0; i < input.length; i++)
+            input[i] = 50 - i;
+
+        try {
+            SimpleSort.insertionSortInt(input);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+
+        System.out.println("Data sorted by insertionSort:");
+        for(int i = 0; i < input.length; i++)
+            System.out.print(input[i] + " ");
+        System.out.println();
+
+        for(int i = 0; i < input.length; i++)
+            input[i] = 50 - i;
+
+        try {
+            SimpleSort.selectionSortInt(input);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+
+        System.out.println("Data sorted by SelectionSort:");
+        for(int i = 0; i < input.length; i++)
+            System.out.print(input[i] + " ");
+        System.out.println();
+
+        System.out.println("Input data:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = 50 - i;
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
+
+        try {
+            SimpleSort.bubbleSortSequence(input, 1, 48);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println("Data sequence [1;48] sorted by bubbleSort:");
+        for(int i = 0; i < input.length; i++)
+            System.out.print(input[i] + " ");
+        System.out.println();
+
+        for(int i = 0; i < input.length; i++)
+            input[i] = 50 - i;
+
+        try {
+            SimpleSort.insertionSortSequence(input, 1, 48);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println("Data sequence [1;48] sorted by insertionSort:");
+        for(int i = 0; i < input.length; i++)
+            System.out.print(input[i] + " ");
+        System.out.println();
+
+        for(int i = 0; i < input.length; i++)
+            input[i] = 50 - i;
+
+        try {
+            SimpleSort.selectionSortSequence(input, 1, 48);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println("Data sequence [1;48] sorted by selectionSort:");
+        for(int i = 0; i < input.length; i++)
+            System.out.print(input[i] + " ");
+        System.out.println();
+
+        System.out.println("Input data:");
+        String strInput[] = new String[26];
+        for(int i = 90; i >= 65; i--){
+            strInput[i - 65] = "" + (char)i;
+            System.out.print(strInput[i - 65] + " ");
+        }
+        System.out.println();
+
+        try {
+            SimpleSort.bubbleSortAll(strInput);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+
+        System.out.println("Data sorted by bubbleSort:");
+        for(int i = 0; i < strInput.length; i++)
+            System.out.print(strInput[i] + " ");
+        System.out.println();
+
+        for(int i = 90; i >= 65; i--)
+            strInput[i - 65] = "" + (char)i;
+
+        try {
+            SimpleSort.insertionSortAll(strInput);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+
+        System.out.println("Data sorted by insertionSort:");
+        for(int i = 0; i < strInput.length; i++)
+            System.out.print(strInput[i] + " ");
+        System.out.println();
+
+        for(int i = 90; i >= 65; i--)
+            strInput[i - 65] = "" + (char)i;
+
+        try {
+            SimpleSort.selectionSortAll(strInput);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+
+        System.out.println("Data sorted by selectionSort:");
+        for(int i = 0; i < strInput.length; i++)
+            System.out.print(strInput[i] + " ");
+        System.out.println();
     }
 }
