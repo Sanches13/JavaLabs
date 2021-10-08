@@ -90,11 +90,16 @@ public class BinaryTree<T extends Comparable<T>>{
     }
 
     //------------
-    public void printTree(Node<T> node){
+    public void printTree(){
+        printNode(rootNode);
+        System.out.println();
+    }
+
+    private void printNode(Node<T> node){
         if (node == null) return;
-        printTree(node.left);
-        System.out.println(node.data);
-        printTree(node.right);
+        printNode(node.left);
+        System.out.print(node.data + " ");
+        printNode(node.right);
     }
     //------------
 
