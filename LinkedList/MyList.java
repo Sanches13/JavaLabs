@@ -83,6 +83,7 @@ public class MyList<T>{
             throw new Exception("List is empty!");
 
         Node<T> currentNode = head;
+
         if(currentNode.data == data && size == 1){
             head = null;
             tail = null;
@@ -97,14 +98,14 @@ public class MyList<T>{
         }
 
         Node<T> prevNode = new Node<T>();
-        while(currentNode.data.equals(data)){
+        while(currentNode.data != data){
             prevNode = currentNode;
-	    if(currentNode.next == null){
-		System.out.println("Element is not found");
-		return;
-	    }
+            if(currentNode.next == null){
+                System.out.println("Element is not found");
+                return;
+            }
             currentNode = currentNode.next;
-            if(currentNode.data == data){
+            if(currentNode.data.equals(data)){
                 if(tail.data == data){
                     tail = prevNode;
                     tail.next = null;
@@ -140,7 +141,7 @@ public class MyList<T>{
     public void printList(){
         Node<T> currentNode = head;
         while(currentNode != null){
-            System.out.println(currentNode.data);
+            System.out.print(currentNode.data + " ");
             currentNode = currentNode.next;
         }
     }
