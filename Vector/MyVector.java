@@ -44,7 +44,7 @@ public class MyVector<T>{
     }
 
     public void insertByIndex(int index, T newData) throws Exception{
-        if(index < 0 || index >= currentSize)
+        if(index < 0 || index >currentSize)
             throw new Exception("Error index. Your index: " + index + "; Current size: " + currentSize);
 
         if(currentSize >= maxSize){

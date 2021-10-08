@@ -1,44 +1,62 @@
 public class TestVector {
 
     public static void main(String[] args) {
-        MyVector<Integer> newVector = new MyVector<Integer>(10);
-        for(int i = 0; i < 10; i++)
-            newVector.insertAtEnd(i + 10);
-        System.out.println("Current size: " + newVector.getCurrentSize() + "; Max size: " + newVector.getMaxSize());
-        newVector.printVector();
-        try {
-            newVector.deleteByIndex(5);
+        MyVector<String> firstVector = new MyVector<String>(10);
+        System.out.println("Fill the vector using the method InsertByIndex():");
+        for (int i = 65; i < 78; i++){
+            try {
+                firstVector.insertByIndex(i - 65, "" + (char) i);
+            }
+            catch(Exception e) {
+                System.out.println(e);
+            }
         }
-        catch (Exception e){
-        }
+        firstVector.printVector();
+        System.out.println("Current size: " + firstVector.getCurrentSize() + "; Max size: " + firstVector.getMaxSize());
+        System.out.println("--------------------");
 
-        System.out.println("Current size: " + newVector.getCurrentSize() + "; Max size: " + newVector.getMaxSize());
-        newVector.printVector();
-        try {
-            newVector.insertByIndex(8, 111);
+        System.out.println("Create a copy of the first vector:");
+        MyVector<String> secondVector = new MyVector<String>(firstVector);
+        System.out.println("Fill the copy of the first vector using the method InsertAtEnd():");
+        for(int i = 78; i < 91; i++){
+            try {
+                secondVector.insertAtEnd( "" + (char) i);
+            }
+            catch(Exception e) {
+                System.out.println(e);
+            }
         }
-        catch (Exception e){
-        }
-        System.out.println("Current size: " + newVector.getCurrentSize() + "; Max size: " + newVector.getMaxSize());
-        newVector.printVector();
+        secondVector.printVector();
+        System.out.println("Current size: " + secondVector.getCurrentSize() + "; Max size: " + secondVector.getMaxSize());
+        System.out.println("--------------------");
 
-        System.out.println("_____________");
-        try {
-            newVector.deleteEndElem();
+        System.out.println("Delete the first and the last 5 elements of copied vector using methods DeleteEndElem() and DeleteByIndex():");
+        for(int i = 0; i < 5; i++){
+            try {
+                secondVector.deleteEndElem();
+                secondVector.deleteByIndex(0);
+            }
+            catch(Exception e) {
+                System.out.println(e);
+            }
         }
-        catch (Exception e){
-        }
-        MyVector<Integer> second = new MyVector<Integer>(newVector);
-        second.printVector();
-        System.out.println("Current size: " + second.getCurrentSize() + "; Max size: " + second.getMaxSize());
-        try {
-            for(int i = 0; i < 50; i++)
-                second.insertByIndex(6, i + 222);
-        }
-        catch (Exception e){
-            System.out.println("Error");
-        }
-        second.printVector();
-        System.out.println("Current size: " + second.getCurrentSize() + "; Max size: " + second.getMaxSize());
+        secondVector.printVector();
+        System.out.println("Current size: " + secondVector.getCurrentSize() + "; Max size: " + secondVector.getMaxSize());
+        System.out.println("--------------------");
+
+        System.out.println("Clear the copied list:");
+        secondVector.deleteAll();
+        secondVector.printVector();
+        System.out.println("Current size: " + secondVector.getCurrentSize() + "; Max size: " + secondVector.getMaxSize());
+        System.out.println("--------------------");
+
+        System.out.println("Create a third vector of size N = 10 and add the number of elements equal to M = 100");
+        MyVector<Integer> thirdVector = new MyVector<Integer>(10);
+        for(int i = 0; i < 100; i++)
+            thirdVector.insertAtEnd(i);
+        thirdVector.printVector();
+        System.out.println("Current size: " + thirdVector.getCurrentSize() + "; Max size: " + thirdVector.getMaxSize());
+        System.out.println("--------------------");
     }
 }
+
