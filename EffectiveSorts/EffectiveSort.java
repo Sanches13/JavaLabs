@@ -301,7 +301,7 @@ class EffectiveSort{
 
     public static <T extends Comparable<T>> void heapSortAll(T array[]){
         for(int i = (array.length - 1) / 2; i >= 0; i--){
-            toHeapAll(array, array.length - 1, i);
+            toHeapAll(array, array.length, i);
         }
 
         for(int i = array.length - 1; i >= 0; i--){
