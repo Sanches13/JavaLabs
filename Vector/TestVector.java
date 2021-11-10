@@ -40,6 +40,7 @@ public class TestVector {
                 System.out.println(e);
             }
         }
+
         secondVector.printVector();
         System.out.println("Current size: " + secondVector.getCurrentSize() + "; Max size: " + secondVector.getMaxSize());
         System.out.println("--------------------");

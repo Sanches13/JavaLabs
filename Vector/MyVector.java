@@ -30,6 +30,7 @@ public class MyVector<T>{
         if(currentSize == 0)
             throw new Exception("This vector is empty!");
 
+        vector[currentSize - 1] = null;
         currentSize--;
     }
 
@@ -40,11 +41,12 @@ public class MyVector<T>{
         for(int i = index; i < currentSize - 1; i++){
             vector[i] = vector[i + 1];
         }
+        vector[currentSize - 1] = null;
         currentSize--;
     }
 
     public void insertByIndex(int index, T newData) throws Exception{
-        if(index < 0 || index >currentSize)
+        if(index < 0 || index > currentSize)
             throw new Exception("Error index. Your index: " + index + "; Current size: " + currentSize);
 
         if(currentSize >= maxSize){
@@ -54,6 +56,7 @@ public class MyVector<T>{
         for(int i = currentSize; i > index; i--){
             vector[i] = vector[i - 1];
         }
+
         vector[index] = newData;
         currentSize++;
     }

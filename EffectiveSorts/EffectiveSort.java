@@ -7,20 +7,19 @@ class EffectiveSort{
         if(array.length == 0)
             throw new Exception("Your array is empty!");
 
-        if(begin < 0 || begin >= end)
-            throw new Exception("Error begin index!");
-
-        if(end < 0 || end >= array.length)
-            throw new Exception("Error end index!");
-
+        if(begin < 0 || begin >= end || end >= array.length)
+            throw new Exception("Check your indices!");
 
         int middle = begin + (end - begin) / 2;
+
         int left = begin;
         int right = end;
+        int middleElement = array[middle];
+
         while(left <= right){
-            while(array[left] < array[middle])
+            while(array[left] < middleElement)
                 left++;
-            while(array[right] > array[middle])
+            while(array[right] > middleElement)
                 right--;
 
             if(left <= right){
@@ -56,19 +55,19 @@ class EffectiveSort{
         if(array.length == 0)
             throw new Exception("Your array is empty!");
 
-        if(begin < 0 || begin >= end)
-            throw new Exception("Error begin index!");
-
-        if(end < 0 || end >= array.length)
-            throw new Exception("Error end index!");
+        if(begin < 0 || begin >= end || end >= array.length)
+            throw new Exception("Check your indices!");
 
         int middle = begin + (end - begin) / 2;
+
         int left = begin;
         int right = end;
+        T middleElement = array[middle];
+
         while(left <= right){
-            while(array[left].compareTo(array[middle]) < 0)
+            while(array[left].compareTo(middleElement) < 0)
                 left++;
-            while(array[right].compareTo(array[middle]) > 0)
+            while(array[right].compareTo(middleElement) > 0)
                 right--;
 
             if(left <= right){
@@ -228,11 +227,11 @@ class EffectiveSort{
     }
 
     public static void heapSortInt(int array[]){
-        for(int i = (array.length - 1) / 2; i >= 0; i--){
-            toHeap(array, array.length - 1, i);
+        for(int i = (array.length / 2) - 1; i >= 0; i--){
+            toHeap(array, array.length, i);
         }
 
-        for(int i = array.length - 1; i >= 0; i--){
+        for(int i = array.length - 1; i > 0; i--){
             int temp = array[i];
             array[i] = array[0];
             array[0] = temp;
@@ -242,39 +241,14 @@ class EffectiveSort{
     }
 
     public static void heapSortSequence(int array[], int begin, int end){
-        for(int i = (begin + end) / 2 - 1; i >= begin; i--){
-            toHeapSequence(array, end + 1, i, begin, end);
-        }
+        int sequence[] = new int[end - begin + 1];
+        for(int i = 0; i < sequence.length; i++)
+            sequence[i] = array[begin + i];
 
-        for(int i = end; i >= begin; i--){
-            int temp = array[i];
-            array[i] = array[begin];
-            array[begin] = temp;
+        heapSortInt(sequence);
 
-            toHeapSequence(array, i, begin, begin, end);
-        }
-    }
-
-    private static void toHeapSequence(int array[], int n, int i, int begin, int end){
-        int largest = i;
-        int l = 2 * (i - begin) + 1 + begin;
-        int r = 2 * (i - begin) + 2 + begin;
-
-        if(l < n && array[largest] < array[l]){
-            largest = l;
-        }
-
-        if(r < n && array[largest] < array[r]){
-            largest = r;
-        }
-
-        if(largest != i){
-            int temp = array[largest];
-            array[largest] = array[i];
-            array[i] = temp;
-
-            toHeapSequence(array, n, largest, begin, end);
-        }
+        for(int i = 0; i < sequence.length; i++)
+            array[begin + i] = sequence[i];
     }
 
     private static void toHeap(int array[], int n, int i){
@@ -300,11 +274,11 @@ class EffectiveSort{
     }
 
     public static <T extends Comparable<T>> void heapSortAll(T array[]){
-        for(int i = (array.length - 1) / 2; i >= 0; i--){
+        for(int i = (array.length / 2) - 1; i >= 0; i--){
             toHeapAll(array, array.length, i);
         }
 
-        for(int i = array.length - 1; i >= 0; i--){
+        for(int i = array.length - 1; i > 0; i--){
             T temp = array[i];
             array[i] = array[0];
             array[0] = temp;

@@ -1,4 +1,4 @@
-public class LinSort{
+class LinSort{
     private static int getMaxDigit(int max){
         int digit = 1;
         while(max / 10 != 0) {
@@ -26,7 +26,9 @@ public class LinSort{
         return max;
     }
 
-    public static void LSD(int array[]){
+    public static void LSD(int array[]) throws Exception{
+        if(array.length == 0)
+            throw new Exception("Your array is empty!");
 
         int max = getMax(array, 0, array.length);
         int digit = getMaxDigit(max);
@@ -56,13 +58,15 @@ public class LinSort{
                 digits[number]++;
             }
 
-            for(int j = 0; j < array.length; j++) {
+            for (int j = 0; j < array.length; j++)
                 array[j] = currentArray[j];
-            }
         }
     }
 
-    public static void countingSort(int array[]){
+    public static void countingSort(int array[]) throws Exception{
+        if(array.length == 0)
+            throw new Exception("Your array is empty!");
+
         int max = getMax(array, 0, array.length);
 
         int diapasonLength = max + 1;
@@ -90,53 +94,84 @@ public class LinSort{
         }
     }
 
-    public static void MSD(int array[]) {
-
+    public static void MSD(int array[]) throws Exception{
         int max = getMax(array, 0, array.length);
-
         int digit = getMaxDigit(max);
+        if(array.length == 0)
+            throw new Exception("Your array is empty!");
 
-        for (int i = 0; i < digit; i++) {
-            int digits[] = new int[10];
-            for (int j = 0; j < 10; j++)
-                digits[j] = 0;
+        MSDSort(array, 0, array.length, digit/*, digit*/);
+    }
 
-            for (int j = 0; j < array.length; j++) {
-                int number = getDigit(array[j], digit - i + 1);
-                digits[number]++;
-            }
+    public static void MSDSort(int array[], int begin, int end, int currentDigit/*, int maxDigit*/) throws Exception{
+        if(end <= begin || currentDigit < 1)
+            return;
 
-            int currentArray[] = new int[array.length];
+        int digits[] = new int[10 + 1];
+        for(int j = 0; j < 10 + 1; j++)
+            digits[j] = 0;
 
-            int count = 0;
-            for (int j = 0; j < 10; j++) {
-                int temp = digits[j];
-                digits[j] = count;
-                count += temp;
-            }
+        for(int j = begin; j < end; j++) {
+            int number = getDigit(array[j], currentDigit);
+            digits[number]++;
+        }
 
-            for (int j = 0; j < array.length; j++) {
-                int number = getDigit(array[j], digit - i + 1);
-                currentArray[digits[number]] = array[j];
-                digits[number]++;
-            }
+        int currentArray[] = new int[array.length];
 
-            for (int j = 0; j < array.length; j++) {
-                array[j] = currentArray[j];
-            }
+        int count = 0;
+        for(int j = 0; j < 11; j++) {
+            int temp = digits[j];
+            digits[j] = count;
+            count += temp;
+        }
+
+        int currentDigits[] = new int[11];
+        for(int i = 0; i < 11; i++)
+            currentDigits[i] = digits[i];
+
+        for(int j = begin; j < end; j++) {
+            int number = getDigit(array[j], currentDigit);
+            currentArray[digits[number]] = array[j];
+            digits[number]++;
+        }
+
+        for (int j = begin; j < end; j++)
+            array[j] = currentArray[j];
+
+        for(int i = 0; i < 10; i++) {
+            int part[] = new int[currentDigits[i + 1] - currentDigits[i]];
+            for(int j = 0; j < part.length; j++)
+                part[j] = array[j + currentDigits[i]];
+            MSDSort(part, 0, part.length, currentDigit - 1);
+            for(int j = currentDigits[i]; j < currentDigits[i + 1]; j++)
+                array[j] = part[j - currentDigits[i]];
         }
     }
 
-    public static void countingSortSequence(int array[], int begin, int end){
+    public static void countingSortSequence(int array[], int begin, int end) throws Exception{
+        if(array.length == 0)
+            throw new Exception("Your array is empty!");
+
+        if(begin < 0 || begin >= end || end >= array.length)
+            throw new Exception("Check your indices");
+
         int sequence[] = new int[end - begin + 1];
         for(int i = 0; i < sequence.length; i++)
             sequence[i] = array[begin + i];
+
         countingSort(sequence);
+
         for(int i = 0; i < sequence.length; i++)
             array[begin + i] = sequence[i];
     }
 
-    public static void LSDSequence(int array[], int begin, int end) {
+    public static void LSDSequence(int array[], int begin, int end) throws Exception{
+        if(array.length == 0)
+            throw new Exception("Your array is empty!");
+
+        if(begin < 0 || begin >= end || end >= array.length)
+            throw new Exception("Check your indices");
+
         int sequence[] = new int[end - begin + 1];
         for(int i = 0; i < sequence.length; i++)
             sequence[i] = array[begin + i];
@@ -145,7 +180,13 @@ public class LinSort{
             array[begin + i] = sequence[i];
     }
 
-    public static void MSDSequence(int array[], int begin, int end) {
+    public static void MSDSequence(int array[], int begin, int end) throws Exception{
+        if(array.length == 0)
+            throw new Exception("Your array is empty!");
+
+        if(begin < 0 || begin >= end || end >= array.length)
+            throw new Exception("Check your indices");
+
         int sequence[] = new int[end - begin + 1];
         for(int i = 0; i < sequence.length; i++)
             sequence[i] = array[begin + i];
@@ -154,4 +195,3 @@ public class LinSort{
             array[begin + i] = sequence[i];
     }
 }
-

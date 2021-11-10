@@ -1,6 +1,6 @@
-public class MyList<T>{
+class MyList<T>{
 
-    class Node<T>{
+    static class Node<T>{
         T data;
         Node<T> next;
 

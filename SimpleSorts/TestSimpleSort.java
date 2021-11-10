@@ -1,10 +1,10 @@
 public class TestSimpleSort{
     public static void main(String[] args) {
-        int input[] = new int[50];
+        int input[] = new int[25];
 
-        System.out.println("Input data:");
+        System.out.println("Random array with values from 0 to 10000:");
         for(int i = 0; i < input.length; i++) {
-            input[i] = 50 - i;
+            input[i] = (int) (Math.random() * 10000);
             System.out.print(input[i] + " ");
         }
         System.out.println();
@@ -21,8 +21,12 @@ public class TestSimpleSort{
             System.out.print(input[i] + " ");
         System.out.println();
 
-        for(int i = 0; i < input.length; i++)
-            input[i] = 50 - i;
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
 
         try {
             SimpleSort.insertionSortInt(input);
@@ -36,8 +40,12 @@ public class TestSimpleSort{
             System.out.print(input[i] + " ");
         System.out.println();
 
-        for(int i = 0; i < input.length; i++)
-            input[i] = 50 - i;
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
 
         try {
             SimpleSort.selectionSortInt(input);
@@ -51,48 +59,57 @@ public class TestSimpleSort{
             System.out.print(input[i] + " ");
         System.out.println();
 
-        System.out.println("Input data:");
+        System.out.println("Random array with values from 0 to 10000:");
         for(int i = 0; i < input.length; i++) {
-            input[i] = 50 - i;
+            input[i] = (int) (Math.random() * 10000);
             System.out.print(input[i] + " ");
         }
         System.out.println();
 
         try {
-            SimpleSort.bubbleSortSequence(input, 1, 48);
+            SimpleSort.bubbleSortSequence(input, 1, 23);
         }
         catch(Exception e){
             System.out.println(e);
         }
-        System.out.println("Data sequence [1;48] sorted by bubbleSort:");
+        System.out.println("Data sequence [1;23] sorted by bubbleSort:");
         for(int i = 0; i < input.length; i++)
             System.out.print(input[i] + " ");
         System.out.println();
 
-        for(int i = 0; i < input.length; i++)
-            input[i] = 50 - i;
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
 
         try {
-            SimpleSort.insertionSortSequence(input, 1, 48);
+            SimpleSort.insertionSortSequence(input, 1, 23);
         }
         catch(Exception e){
             System.out.println(e);
         }
-        System.out.println("Data sequence [1;48] sorted by insertionSort:");
+        System.out.println("Data sequence [1;23] sorted by insertionSort:");
         for(int i = 0; i < input.length; i++)
             System.out.print(input[i] + " ");
         System.out.println();
 
-        for(int i = 0; i < input.length; i++)
-            input[i] = 50 - i;
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
 
         try {
-            SimpleSort.selectionSortSequence(input, 1, 48);
+            SimpleSort.selectionSortSequence(input, 1, 23);
         }
         catch(Exception e){
             System.out.println(e);
         }
-        System.out.println("Data sequence [1;48] sorted by selectionSort:");
+
+        System.out.println("Data sequence [1;23] sorted by selectionSort:");
         for(int i = 0; i < input.length; i++)
             System.out.print(input[i] + " ");
         System.out.println();

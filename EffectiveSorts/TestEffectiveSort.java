@@ -1,16 +1,10 @@
 public class TestEffectiveSort{
-    public static void printArray(int array[]){
-        for(int i = 0; i < array.length; i++)
-            System.out.print(array[i] + " ");
-        System.out.println();
-    }
-
     public static void main(String[] args) {
-	int input[] = new int[50];
+        int input[] = new int[25];
 
-        System.out.println("Input data:");
+        System.out.println("Random array with values from 0 to 10000:");
         for(int i = 0; i < input.length; i++) {
-            input[i] = 50 - i;
+            input[i] = (int) (Math.random() * 10000);
             System.out.print(input[i] + " ");
         }
         System.out.println();
@@ -27,8 +21,12 @@ public class TestEffectiveSort{
             System.out.print(input[i] + " ");
         System.out.println();
 
-        for(int i = 0; i < input.length; i++)
-            input[i] = 50 - i;
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
 
         try {
             EffectiveSort.quickSortInt(input);
@@ -42,8 +40,12 @@ public class TestEffectiveSort{
             System.out.print(input[i] + " ");
         System.out.println();
 
-        for(int i = 0; i < input.length; i++)
-            input[i] = 50 - i;
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
 
         try {
             EffectiveSort.heapSortInt(input);
@@ -57,48 +59,56 @@ public class TestEffectiveSort{
             System.out.print(input[i] + " ");
         System.out.println();
 
-        System.out.println("Input data:");
+        System.out.println("Random array with values from 0 to 10000:");
         for(int i = 0; i < input.length; i++) {
-            input[i] = 50 - i;
+            input[i] = (int) (Math.random() * 10000);
             System.out.print(input[i] + " ");
         }
         System.out.println();
 
         try {
-            EffectiveSort.mergeSortSequence(input, 1, 48);
+            EffectiveSort.mergeSortSequence(input, 1, 23);
         }
         catch(Exception e){
             System.out.println(e);
         }
-        System.out.println("Data sequence [1;48] sorted by mergeSort:");
+        System.out.println("Data sequence [1;23] sorted by mergeSort:");
         for(int i = 0; i < input.length; i++)
             System.out.print(input[i] + " ");
         System.out.println();
 
-        for(int i = 0; i < input.length; i++)
-            input[i] = 50 - i;
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
 
         try {
-            EffectiveSort.quickSortSequence(input, 1, 48);
+            EffectiveSort.quickSortSequence(input, 1, 23);
         }
         catch(Exception e){
             System.out.println(e);
         }
-        System.out.println("Data sequence [1;48] sorted by quickSort:");
+        System.out.println("Data sequence [1;23] sorted by quickSort:");
         for(int i = 0; i < input.length; i++)
             System.out.print(input[i] + " ");
         System.out.println();
 
-        for(int i = 0; i < input.length; i++)
-            input[i] = 50 - i;
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
 
         try {
-            EffectiveSort.heapSortSequence(input, 1, 48);
+            EffectiveSort.heapSortSequence(input, 1, 23);
         }
         catch(Exception e){
             System.out.println(e);
         }
-        System.out.println("Data sequence [1;48] sorted by heapSort:");
+        System.out.println("Data sequence [1;23] sorted by heapSort:");
         for(int i = 0; i < input.length; i++)
             System.out.print(input[i] + " ");
         System.out.println();

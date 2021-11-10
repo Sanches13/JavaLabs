@@ -1,15 +1,113 @@
 public class TestLinSort{
     public static void main(String[] args) {
-	int array[] = {92, 29, 38, 47, 56, 65, 74, 83, 1, 10};
-        //int array[] = new int[10];
-        for(int i = 0; i < 10; i++){
-            //array[i] = 5000 - i*10;
-            System.out.print(array[i] + " ");
+        int input[] = new int[25];
+
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
         }
         System.out.println();
-        LinSort.countingSortSequence(array, 1, 8);
-        for(int i = 0; i < 10; i++){
-            System.out.print(array[i] + " ");
+
+        try {
+            LinSort.LSD(input);
+        } catch (Exception e) {
+            System.out.println(e);
         }
+
+        System.out.println("Data sorted by LSD sort:");
+        for(int i = 0; i < input.length; i++)
+            System.out.print(input[i] + " ");
+        System.out.println();
+
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
+
+        try {
+            LinSort.MSD(input);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        System.out.println("Data sorted by MSD sort:");
+        for(int i = 0; i < input.length; i++)
+            System.out.print(input[i] + " ");
+        System.out.println();
+
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
+
+        try {
+            LinSort.countingSort(input);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        System.out.println("Data sorted by counting sort:");
+        for(int i = 0; i < input.length; i++)
+            System.out.print(input[i] + " ");
+        System.out.println();
+
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
+
+        try {
+            LinSort.LSDSequence(input, 1, 23);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println("Data sequence [1;23] sorted by LSD sort:");
+        for(int i = 0; i < input.length; i++)
+            System.out.print(input[i] + " ");
+        System.out.println();
+
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
+
+        try {
+            LinSort.MSDSequence(input, 1, 23);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println("Data sequence [1;23] sorted by MSD sort:");
+        for(int i = 0; i < input.length; i++)
+            System.out.print(input[i] + " ");
+        System.out.println();
+
+        System.out.println("Random array with values from 0 to 10000:");
+        for(int i = 0; i < input.length; i++) {
+            input[i] = (int) (Math.random() * 10000);
+            System.out.print(input[i] + " ");
+        }
+        System.out.println();
+
+        try {
+            LinSort.countingSortSequence(input, 1, 23);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println("Data sequence [1;23] sorted by counting sort:");
+        for(int i = 0; i < input.length; i++)
+            System.out.print(input[i] + " ");
+        System.out.println();
     }
 }
