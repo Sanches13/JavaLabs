@@ -1,4 +1,4 @@
-class LinSort{
+public class LinSort{
     private static int getMaxDigit(int max){
         int digit = 1;
         while(max / 10 != 0) {
@@ -26,10 +26,7 @@ class LinSort{
         return max;
     }
 
-    public static void LSD(int array[]) throws Exception{
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
-
+    public static void LSD(int array[]){
         int max = getMax(array, 0, array.length);
         int digit = getMaxDigit(max);
 
@@ -63,10 +60,7 @@ class LinSort{
         }
     }
 
-    public static void countingSort(int array[]) throws Exception{
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
-
+    public static void countingSort(int array[]){
         int max = getMax(array, 0, array.length);
 
         int diapasonLength = max + 1;
@@ -94,16 +88,14 @@ class LinSort{
         }
     }
 
-    public static void MSD(int array[]) throws Exception{
+    public static void MSD(int array[]){
         int max = getMax(array, 0, array.length);
         int digit = getMaxDigit(max);
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
 
-        MSDSort(array, 0, array.length, digit/*, digit*/);
+        MSDSort(array, 0, array.length, digit);
     }
 
-    public static void MSDSort(int array[], int begin, int end, int currentDigit/*, int maxDigit*/) throws Exception{
+    public static void MSDSort(int array[], int begin, int end, int currentDigit){
         if(end <= begin || currentDigit < 1)
             return;
 
@@ -149,9 +141,6 @@ class LinSort{
     }
 
     public static void countingSortSequence(int array[], int begin, int end) throws Exception{
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
-
         if(begin < 0 || begin >= end || end >= array.length)
             throw new Exception("Check your indices");
 
@@ -166,9 +155,6 @@ class LinSort{
     }
 
     public static void LSDSequence(int array[], int begin, int end) throws Exception{
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
-
         if(begin < 0 || begin >= end || end >= array.length)
             throw new Exception("Check your indices");
 
@@ -181,9 +167,6 @@ class LinSort{
     }
 
     public static void MSDSequence(int array[], int begin, int end) throws Exception{
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
-
         if(begin < 0 || begin >= end || end >= array.length)
             throw new Exception("Check your indices");
 

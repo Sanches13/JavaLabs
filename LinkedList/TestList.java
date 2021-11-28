@@ -37,7 +37,7 @@ public class TestList{
         System.out.println("Current size of list: " + secondList.getSize());
         System.out.println("--------------------");
 
-        System.out.println("Delete the last 5 elements of copied list using method DeleteAtBegin():");
+        System.out.println("Delete the last 5 elements of copied list using method DeleteByData():");
         for(int i = 90; i > 85; i--){
             try {
                 secondList.deleteByData("" + (char)i);

@@ -9,11 +9,7 @@ public class TestLinSort{
         }
         System.out.println();
 
-        try {
-            LinSort.LSD(input);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        LinSort.LSD(input);
 
         System.out.println("Data sorted by LSD sort:");
         for(int i = 0; i < input.length; i++)
@@ -27,11 +23,7 @@ public class TestLinSort{
         }
         System.out.println();
 
-        try {
-            LinSort.MSD(input);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        LinSort.MSD(input);
 
         System.out.println("Data sorted by MSD sort:");
         for(int i = 0; i < input.length; i++)
@@ -45,11 +37,7 @@ public class TestLinSort{
         }
         System.out.println();
 
-        try {
-            LinSort.countingSort(input);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        LinSort.countingSort(input);
 
         System.out.println("Data sorted by counting sort:");
         for(int i = 0; i < input.length; i++)

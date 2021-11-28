@@ -1,12 +1,14 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Vector;
 
-class EffectiveSort{
+public class EffectiveSort{
 
-    public static void quickSortSequence(int array[], int begin, int end) throws Exception{
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
+    public static void quickSort(int array[]) throws Exception {
+        quickSort(array, 0, array.length - 1);
+    }
 
+    public static void quickSort(int array[], int begin, int end) throws Exception{
         if(begin < 0 || begin >= end || end >= array.length)
             throw new Exception("Check your indices!");
 
@@ -32,29 +34,16 @@ class EffectiveSort{
         }
 
         if(begin < right)
-            quickSortSequence(array, begin, right);
+            quickSort(array, begin, right);
         if(left < end)
-            quickSortSequence(array, left, end);
+            quickSort(array, left, end);
     }
 
-    public static void quickSortInt(int array[]) throws Exception {
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
-
-        quickSortSequence(array, 0, array.length - 1);
+    public static <T extends Comparable<T>> void quickSort(T array[]) throws Exception{
+        quickSort(array, 0, array.length - 1);
     }
 
-    public static <T extends Comparable<T>> void quickSortAll(T array[]) throws Exception{
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
-
-        quickSortSequenceAll(array, 0, (array.length - 1));
-    }
-
-    public static <T extends Comparable<T>> void quickSortSequenceAll(T array[], int begin, int end) throws Exception{
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
-
+    public static <T extends Comparable<T>> void quickSort(T array[], int begin, int end) throws Exception{
         if(begin < 0 || begin >= end || end >= array.length)
             throw new Exception("Check your indices!");
 
@@ -80,33 +69,60 @@ class EffectiveSort{
         }
 
         if(begin < right)
-            quickSortSequenceAll(array, begin, right);
+            quickSort(array, begin, right);
         if(left < end)
-            quickSortSequenceAll(array, left, end);
+            quickSort(array, left, end);
     }
 
-    public static void mergeSortInt(int array[]) throws Exception{
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
-
-        mergeSortSequence(array, 0, array.length - 1);
+    public static <T extends Comparable<? super T>> void quickSort(Vector<T> vector) throws Exception{
+        quickSort(vector, 0, vector.size() - 1);
     }
 
-    public static void mergeSortSequence(int array[], int begin, int end) throws Exception{
-        if(begin >= end)
-            return;
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
-
-        if(begin < 0)
-            throw new Exception("Error begin index!");
-
-        if(end < 0 || end >= array.length)
-            throw new Exception("Error end index!");
+    private static <T extends Comparable<? super T>> void quickSort(Vector<T> vector, int begin, int end) throws Exception{
+        if(begin < 0 || begin >= end || end >= vector.size())
+            throw new Exception("Check your indices!");
 
         int middle = begin + (end - begin) / 2;
-        mergeSortSequence(array, begin, middle);
-        mergeSortSequence(array, middle + 1, end);
+
+        int left = begin;
+        int right = end;
+        T middleElement = vector.get(middle);
+
+        while(left <= right){
+            while(vector.get(left).compareTo(middleElement) < 0)
+                left++;
+            while(vector.get(right).compareTo(middleElement) > 0)
+                right--;
+
+            if(left <= right){
+                T swap = vector.get(left);
+                vector.set(left, vector.get(right));
+                vector.set(right, swap);
+                left++;
+                right--;
+            }
+        }
+
+        if(begin < right)
+            quickSort(vector, begin, right);
+        if(left < end)
+            quickSort(vector, left, end);
+    }
+
+    public static void mergeSort(int array[]) throws Exception{
+        mergeSort(array, 0, array.length - 1);
+    }
+
+    public static void mergeSort(int array[], int begin, int end) throws Exception{
+        if(begin >= end)
+            return;
+
+        if(begin < 0 || end >= array.length)
+            throw new Exception("Check your indices!");
+
+        int middle = begin + (end - begin) / 2;
+        mergeSort(array, begin, middle);
+        mergeSort(array, middle + 1, end);
         merge(array, begin, middle, end);
     }
 
@@ -155,33 +171,24 @@ class EffectiveSort{
         }
     }
 
-    public static <T extends Comparable<T>> void mergeSortAll(T array[]) throws Exception{
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
-
-        mergeSortSequenceAll(array, 0, array.length - 1);
+    public static <T extends Comparable<T>> void mergeSort(T array[]) throws Exception{
+        mergeSort(array, 0, array.length - 1);
     }
 
-    public static <T extends Comparable<T>> void mergeSortSequenceAll(T array[], int begin, int end) throws Exception{
+    public static <T extends Comparable<T>> void mergeSort(T array[], int begin, int end) throws Exception{
         if(begin >= end)
             return;
 
-        if(array.length == 0)
-            throw new Exception("Your array is empty!");
-
-        if(begin < 0)
-            throw new Exception("Error begin index!");
-
-        if(end < 0 || end >= array.length)
-            throw new Exception("Error end index!");
+        if(begin < 0 || end >= array.length)
+            throw new Exception("Check your indices!");
 
         int middle = begin + (end - begin) / 2;
-        mergeSortSequenceAll(array, begin, middle);
-        mergeSortSequenceAll(array, middle + 1, end);
-        mergeAll(array, begin, middle, end);
+        mergeSort(array, begin, middle);
+        mergeSort(array, middle + 1, end);
+        merge(array, begin, middle, end);
     }
 
-    private static <T extends Comparable<T>> void mergeAll(T array[], int begin, int middle, int end){
+    private static <T extends Comparable<T>> void merge(T array[], int begin, int middle, int end){
         int leftSize = middle - begin + 1;
         int rightSize = end - middle;
 
@@ -226,7 +233,69 @@ class EffectiveSort{
         }
     }
 
-    public static void heapSortInt(int array[]){
+    public static <T extends Comparable<? super T>> void mergeSort(Vector<T> vector) throws Exception{
+        mergeSort(vector, 0, vector.size() - 1);
+    }
+
+    public static <T extends Comparable<? super T>> void mergeSort(Vector<T> vector, int begin, int end) throws Exception{
+        if(begin >= end)
+            return;
+
+        if(begin < 0 || end >= vector.size())
+            throw new Exception("Check your indices!");
+
+        int middle = begin + (end - begin) / 2;
+        mergeSort(vector, begin, middle);
+        mergeSort(vector, middle + 1, end);
+        merge(vector, begin, middle, end);
+    }
+
+    private static <T extends Comparable<? super T>> void merge(Vector<T> vector, int begin, int middle, int end){
+        int leftSize = middle - begin + 1;
+        int rightSize = end - middle;
+
+        List<T> leftPart = new ArrayList<>(leftSize);
+        List<T> rightPart = new ArrayList<>(rightSize);
+
+        for(int i = 0; i < leftSize; i++){
+            leftPart.add(vector.get(begin + i));
+        }
+
+        for(int i = 0; i < rightSize; i++){
+            rightPart.add(vector.get(middle + 1 + i));
+        }
+
+        int left = 0;
+        int right = 0;
+        int current = begin;
+        while(left < leftSize && right < rightSize){
+            if(leftPart.get(left).compareTo(rightPart.get(right)) <= 0){
+                vector.set(current, leftPart.get(left));
+                left++;
+            }
+
+            else{
+                vector.set(current, rightPart.get(right));
+                right++;
+            }
+
+            current++;
+        }
+
+        while(left < leftSize){
+            vector.set(current, leftPart.get(left));
+            left++;
+            current++;
+        }
+
+        while(right < rightSize){
+            vector.set(current, rightPart.get(right));
+            right++;
+            current++;
+        }
+    }
+
+    public static void heapSort(int array[]){
         for(int i = (array.length / 2) - 1; i >= 0; i--){
             toHeap(array, array.length, i);
         }
@@ -240,12 +309,15 @@ class EffectiveSort{
         }
     }
 
-    public static void heapSortSequence(int array[], int begin, int end){
+    public static void heapSort(int array[], int begin, int end) throws Exception{
+        if(begin < 0 || begin >= end || end >= array.length)
+            throw new Exception("Check your indices!");
+
         int sequence[] = new int[end - begin + 1];
         for(int i = 0; i < sequence.length; i++)
             sequence[i] = array[begin + i];
 
-        heapSortInt(sequence);
+        heapSort(sequence);
 
         for(int i = 0; i < sequence.length; i++)
             array[begin + i] = sequence[i];
@@ -253,15 +325,15 @@ class EffectiveSort{
 
     private static void toHeap(int array[], int n, int i){
         int largest = i;
-        int l = 2 * i + 1;
-        int r = 2 * i + 2;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
 
-        if(l < n && array[largest] < array[l]){
-            largest = l;
+        if(left < n && array[largest] < array[left]){
+            largest = left;
         }
 
-        if(r < n && array[largest] < array[r]){
-            largest = r;
+        if(right < n && array[largest] < array[right]){
+            largest = right;
         }
 
         if(largest != i){
@@ -273,9 +345,9 @@ class EffectiveSort{
         }
     }
 
-    public static <T extends Comparable<T>> void heapSortAll(T array[]){
+    public static <T extends Comparable<T>> void heapSort(T array[]){
         for(int i = (array.length / 2) - 1; i >= 0; i--){
-            toHeapAll(array, array.length, i);
+            toHeap(array, array.length, i);
         }
 
         for(int i = array.length - 1; i > 0; i--){
@@ -283,21 +355,38 @@ class EffectiveSort{
             array[i] = array[0];
             array[0] = temp;
 
-            toHeapAll(array, i, 0);
+            toHeap(array, i, 0);
         }
     }
 
-    private static <T extends Comparable<T>> void toHeapAll(T array[], int n, int i){
-        int largest = i;
-        int l = 2 * i + 1;
-        int r = 2 * i + 2;
+    public static <T extends Comparable<T>> void heapSort(T array[], int begin, int end) throws Exception{
+        if(begin < 0 || begin >= end || end >= array.length)
+            throw new Exception("Check your indices!");
 
-        if(l < n && array[largest].compareTo(array[l]) < 0){
-            largest = l;
+        for(int i = ((end + begin) / 2) - 1; i >= begin; i--){
+            toHeap(array, end, i, begin, end - 1);
         }
 
-        if(r < n && array[largest].compareTo(array[r]) < 0){
-            largest = r;
+        for(int i = end - 1; i > begin; i--){
+            T temp = array[i];
+            array[i] = array[begin];
+            array[begin] = temp;
+
+            toHeap(array, i, begin, begin, end);
+        }
+    }
+
+    private static <T extends Comparable<T>> void toHeap(T array[], int n, int i, int begin, int end){
+        int largest = i;
+        int left = 2 * (i - begin) + 1 + begin;
+        int right = 2 * (i - begin) + 2 + begin;
+
+        if(left < n && array[largest].compareTo(array[left]) < 0){
+            largest = left;
+        }
+
+        if(right < n && array[largest].compareTo(array[right]) < 0){
+            largest = right;
         }
 
         if(largest != i){
@@ -305,7 +394,65 @@ class EffectiveSort{
             array[largest] = array[i];
             array[i] = temp;
 
-            toHeapAll(array, n, largest);
+            toHeap(array, n, largest, begin, end);
+        }
+    }
+
+    private static <T extends Comparable<T>> void toHeap(T array[], int n, int i){
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        if(left < n && array[largest].compareTo(array[left]) < 0){
+            largest = left;
+        }
+
+        if(right < n && array[largest].compareTo(array[right]) < 0){
+            largest = right;
+        }
+
+        if(largest != i){
+            T temp = array[largest];
+            array[largest] = array[i];
+            array[i] = temp;
+
+            toHeap(array, n, largest);
+        }
+    }
+
+    public static <T extends Comparable<? super T>> void heapSort(Vector<T> vector){
+        for(int i = (vector.size() / 2) - 1; i >= 0; i--){
+            toHeap(vector, vector.size(), i);
+        }
+
+        for(int i = vector.size() - 1; i > 0; i--){
+            T temp = vector.get(i);
+            vector.set(i, vector.get(0));
+            vector.set(0, temp);
+
+            toHeap(vector, i, 0);
+        }
+    }
+
+    private static <T extends Comparable<? super T>> void toHeap(Vector<T> vector, int n, int i){
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        if(left < n && vector.get(largest).compareTo(vector.get(left)) < 0){
+            largest = left;
+        }
+
+        if(right < n && vector.get(largest).compareTo(vector.get(right)) < 0){
+            largest = right;
+        }
+
+        if(largest != i){
+            T temp = vector.get(largest);
+            vector.set(largest, vector.get(i));
+            vector.set(i, temp);
+
+            toHeap(vector, n, largest);
         }
     }
 }

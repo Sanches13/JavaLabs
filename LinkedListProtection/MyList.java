@@ -39,6 +39,7 @@ public class MyList<T>{
         }
     }
 
+    //inserting an element at the head of the list
     public void insertAtHead(T data){
         Node<T> newNode = new Node<T>();
         newNode.setData(data);
@@ -146,4 +147,25 @@ public class MyList<T>{
         }
     }
     //-------------
+
+    //inserting an element at a given index
+    public void insertByIndex(int index, T data) throws Exception{
+        if(index < 0 || index > size)
+            throw new Exception("Incorrect value of index!");
+
+        if(index == 0)
+            insertAtHead(data);
+        else if(index == size)
+            insertAtEnd(data);
+        else{
+            Node<T> currentNode = head;
+            for(int i = 0; i < index - 1; i++)
+                currentNode = currentNode.next;
+            Node<T> newNode = new Node<T>();
+            newNode.data = data;
+            newNode.next = currentNode.next;
+            currentNode.next = newNode;
+            size++;
+        }
+    }
 }
