@@ -1,4 +1,5 @@
 import java.util.Vector;
+
 public class TestEffectiveSort{
     public static void main(String[] args) {
         int input[] = new int[25];
