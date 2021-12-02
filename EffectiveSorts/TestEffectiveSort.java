@@ -1,15 +1,34 @@
+import java.util.Arrays;
 import java.util.Vector;
 
-public class TestEffectiveSort{
+public class TestEffectiveSort {
+
+    public static int[] generateRandomArray(){
+        int randomArray[] = new int[25];
+        for(int i = 0; i < randomArray.length; i++)
+            randomArray[i] = (int) (Math.random() * 10000);
+        return randomArray;
+    }
+
+    public static String[] generateStringArray(){
+        String strInput[] = new String[26];
+        for(int i = 90; i >= 65; i--)
+            strInput[90 - i] = "" + (char)i;
+        return strInput;
+    }
+
+    public static Vector<Integer> generateRandomVector(){
+        Vector<Integer> randomArray = new Vector<>();
+        for(int i = 0; i < 25; i++)
+            randomArray.add((int) (Math.random() * 10000));
+        return randomArray;
+    }
+
     public static void main(String[] args) {
-        int input[] = new int[25];
+        int input[] = generateRandomArray();
 
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < input.length; i++) {
-            input[i] = (int) (Math.random() * 10000);
-            System.out.print(input[i] + " ");
-        }
-        System.out.println();
+        System.out.println(Arrays.toString(input));
 
         try {
             EffectiveSort.mergeSort(input);
@@ -19,16 +38,11 @@ public class TestEffectiveSort{
         }
 
         System.out.println("Data sorted by mergeSort:");
-        for(int i = 0; i < input.length; i++)
-            System.out.print(input[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(input) + "\n");
 
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < input.length; i++) {
-            input[i] = (int) (Math.random() * 10000);
-            System.out.print(input[i] + " ");
-        }
-        System.out.println();
+        input = generateRandomArray();
+        System.out.println(Arrays.toString(input));
 
         try {
             EffectiveSort.quickSort(input);
@@ -38,30 +52,20 @@ public class TestEffectiveSort{
         }
 
         System.out.println("Data sorted by quickSort:");
-        for(int i = 0; i < input.length; i++)
-            System.out.print(input[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(input) + "\n");
 
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < input.length; i++) {
-            input[i] = (int) (Math.random() * 10000);
-            System.out.print(input[i] + " ");
-        }
-        System.out.println();
+        input = generateRandomArray();
+        System.out.println(Arrays.toString(input));
 
         EffectiveSort.heapSort(input);
 
         System.out.println("Data sorted by heapSort:");
-        for(int i = 0; i < input.length; i++)
-            System.out.print(input[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(input) + "\n");
 
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < input.length; i++) {
-            input[i] = (int) (Math.random() * 10000);
-            System.out.print(input[i] + " ");
-        }
-        System.out.println();
+        input = generateRandomArray();
+        System.out.println(Arrays.toString(input));
 
         try {
             EffectiveSort.mergeSort(input, 1, 23);
@@ -70,16 +74,11 @@ public class TestEffectiveSort{
             System.out.println(e);
         }
         System.out.println("Data sequence [1;23] sorted by mergeSort:");
-        for(int i = 0; i < input.length; i++)
-            System.out.print(input[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(input) + "\n");
 
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < input.length; i++) {
-            input[i] = (int) (Math.random() * 10000);
-            System.out.print(input[i] + " ");
-        }
-        System.out.println();
+        input = generateRandomArray();
+        System.out.println(Arrays.toString(input));
 
         try {
             EffectiveSort.quickSort(input, 1, 23);
@@ -88,16 +87,11 @@ public class TestEffectiveSort{
             System.out.println(e);
         }
         System.out.println("Data sequence [1;23] sorted by quickSort:");
-        for(int i = 0; i < input.length; i++)
-            System.out.print(input[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(input) + "\n");
 
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < input.length; i++) {
-            input[i] = (int) (Math.random() * 10000);
-            System.out.print(input[i] + " ");
-        }
-        System.out.println();
+        input = generateRandomArray();
+        System.out.println(Arrays.toString(input));
 
         try {
             EffectiveSort.heapSort(input, 1, 23);
@@ -105,18 +99,13 @@ public class TestEffectiveSort{
         catch(Exception e){
             System.out.println(e);
         }
-        System.out.println("Data sequence [1;23] sorted by heapSort:");
-        for(int i = 0; i < input.length; i++)
-            System.out.print(input[i] + " ");
-        System.out.println();
 
+        System.out.println("Data sequence [1;23] sorted by heapSort:");
+        System.out.println(Arrays.toString(input) + "\n");
+
+        String strInput[] = generateStringArray();
         System.out.println("Input data:");
-        String strInput[] = new String[26];
-        for(int i = 90; i >= 65; i--){
-            strInput[90 - i] = "" + (char)i;
-            System.out.print(strInput[90 - i] + " ");
-        }
-        System.out.println();
+        System.out.println(Arrays.toString(strInput));
 
         try {
             EffectiveSort.mergeSort(strInput);
@@ -126,12 +115,9 @@ public class TestEffectiveSort{
         }
 
         System.out.println("Data sorted by mergeSort:");
-        for(int i = 0; i < strInput.length; i++)
-            System.out.print(strInput[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(strInput) + "\n");
 
-        for(int i = 90; i >= 65; i--)
-            strInput[90 - i] = "" + (char)i;
+        strInput = generateStringArray();
 
         try {
             EffectiveSort.quickSort(strInput);
@@ -141,22 +127,16 @@ public class TestEffectiveSort{
         }
 
         System.out.println("Data sorted by quickSort:");
-        for(int i = 0; i < strInput.length; i++)
-            System.out.print(strInput[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(strInput) + "\n");
 
-        for(int i = 90; i >= 65; i--)
-            strInput[90 - i] = "" + (char)i;
+        strInput = generateStringArray();
 
         EffectiveSort.heapSort(strInput);
 
         System.out.println("Data sorted by heapSort:");
-        for(int i = 0; i < strInput.length; i++)
-            System.out.print(strInput[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(strInput) + "\n");
 
-        for(int i = 90; i >= 65; i--)
-            strInput[90 - i] = "" + (char)i;
+        strInput = generateStringArray();
 
         try {
             EffectiveSort.quickSort(strInput, 1, 24);
@@ -166,12 +146,9 @@ public class TestEffectiveSort{
         }
 
         System.out.println("Data sequence [1;25] sorted by quickSort:");
-        for(int i = 0; i < strInput.length; i++)
-            System.out.print(strInput[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(strInput) + "\n");
 
-        for(int i = 90; i >= 65; i--)
-            strInput[90 - i] = "" + (char)i;
+        strInput = generateStringArray();
 
         try {
             EffectiveSort.mergeSort(strInput, 1, 24);
@@ -181,12 +158,9 @@ public class TestEffectiveSort{
         }
 
         System.out.println("Data sequence [1;25] sorted by mergeSort:");
-        for(int i = 0; i < strInput.length; i++)
-            System.out.print(strInput[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(strInput) + "\n");
 
-        for(int i = 90; i >= 65; i--)
-            strInput[90 - i] = "" + (char)i;
+        strInput = generateStringArray();
 
         try {
             EffectiveSort.heapSort(strInput, 1, 25);
@@ -196,17 +170,11 @@ public class TestEffectiveSort{
         }
 
         System.out.println("Data sequence [1;25] sorted by heapSort:");
-        for(int i = 0; i < strInput.length; i++)
-            System.out.print(strInput[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(strInput) + "\n");
 
-        Vector<Integer> myVector = new Vector<>();
+        Vector<Integer> myVector = generateRandomVector();
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < 25; i++) {
-            myVector.add((int) (Math.random() * 10000));
-            System.out.print(myVector.get(i) + " ");
-        }
-        System.out.println();
+        System.out.println(myVector.toString());
 
         try {
             EffectiveSort.quickSort(myVector);
@@ -216,17 +184,12 @@ public class TestEffectiveSort{
         }
 
         System.out.println("Vector Data sorted by quickSort:");
-        for(int i = 0; i < 25; i++)
-            System.out.print(myVector.get(i) + " ");
-        System.out.println();
+        System.out.println(myVector.toString() + "\n");
 
         myVector.clear();
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < 25; i++) {
-            myVector.add((int) (Math.random() * 10000));
-            System.out.print(myVector.get(i) + " ");
-        }
-        System.out.println();
+        myVector = generateRandomVector();
+        System.out.println(myVector.toString());
 
         try {
             EffectiveSort.mergeSort(myVector);
@@ -236,23 +199,16 @@ public class TestEffectiveSort{
         }
 
         System.out.println("Vector Data sorted by mergeSort:");
-        for(int i = 0; i < 25; i++)
-            System.out.print(myVector.get(i) + " ");
-        System.out.println();
+        System.out.println(myVector.toString() + "\n");
 
         myVector.clear();
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < 25; i++) {
-            myVector.add((int) (Math.random() * 10000));
-            System.out.print(myVector.get(i) + " ");
-        }
-        System.out.println();
+        myVector = generateRandomVector();
+        System.out.println(myVector.toString());
 
         EffectiveSort.heapSort(myVector);
 
         System.out.println("Vector Data sorted by heapSort:");
-        for(int i = 0; i < 25; i++)
-            System.out.print(myVector.get(i) + " ");
-        System.out.println();
+        System.out.println(myVector.toString() + "\n");
     }
 }

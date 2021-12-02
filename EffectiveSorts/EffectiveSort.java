@@ -1,5 +1,3 @@
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Vector;
 
 public class EffectiveSort{
@@ -192,8 +190,8 @@ public class EffectiveSort{
         int leftSize = middle - begin + 1;
         int rightSize = end - middle;
 
-        List<T> leftPart = new ArrayList<>(leftSize);
-        List<T> rightPart = new ArrayList<>(rightSize);
+        Vector<T> leftPart = new Vector<>(leftSize);
+        Vector<T> rightPart = new Vector<>(rightSize);
 
         for(int i = 0; i < leftSize; i++){
             leftPart.add(array[begin + i]);
@@ -254,8 +252,8 @@ public class EffectiveSort{
         int leftSize = middle - begin + 1;
         int rightSize = end - middle;
 
-        List<T> leftPart = new ArrayList<>(leftSize);
-        List<T> rightPart = new ArrayList<>(rightSize);
+        Vector<T> leftPart = new Vector<>(leftSize);
+        Vector<T> rightPart = new Vector<>(rightSize);
 
         for(int i = 0; i < leftSize; i++){
             leftPart.add(vector.get(begin + i));
@@ -323,25 +321,25 @@ public class EffectiveSort{
             array[begin + i] = sequence[i];
     }
 
-    private static void toHeap(int array[], int n, int i){
-        int largest = i;
-        int left = 2 * i + 1;
-        int right = 2 * i + 2;
+    private static void toHeap(int array[], int heapSize, int rootNodeIndex){
+        int largest = rootNodeIndex;
+        int left = 2 * rootNodeIndex + 1;
+        int right = 2 * rootNodeIndex + 2;
 
-        if(left < n && array[largest] < array[left]){
+        if(left < heapSize && array[largest] < array[left]){
             largest = left;
         }
 
-        if(right < n && array[largest] < array[right]){
+        if(right < heapSize && array[largest] < array[right]){
             largest = right;
         }
 
-        if(largest != i){
+        if(largest != rootNodeIndex){
             int temp = array[largest];
-            array[largest] = array[i];
-            array[i] = temp;
+            array[largest] = array[rootNodeIndex];
+            array[rootNodeIndex] = temp;
 
-            toHeap(array, n, largest);
+            toHeap(array, heapSize, largest);
         }
     }
 
@@ -376,47 +374,47 @@ public class EffectiveSort{
         }
     }
 
-    private static <T extends Comparable<T>> void toHeap(T array[], int n, int i, int begin, int end){
-        int largest = i;
-        int left = 2 * (i - begin) + 1 + begin;
-        int right = 2 * (i - begin) + 2 + begin;
+    private static <T extends Comparable<T>> void toHeap(T array[], int heapSize, int rootNodeIndex, int begin, int end){
+        int largest = rootNodeIndex;
+        int left = 2 * (rootNodeIndex - begin) + 1 + begin;
+        int right = 2 * (rootNodeIndex - begin) + 2 + begin;
 
-        if(left < n && array[largest].compareTo(array[left]) < 0){
+        if(left < heapSize && array[largest].compareTo(array[left]) < 0){
             largest = left;
         }
 
-        if(right < n && array[largest].compareTo(array[right]) < 0){
+        if(right < heapSize && array[largest].compareTo(array[right]) < 0){
             largest = right;
         }
 
-        if(largest != i){
+        if(largest != rootNodeIndex){
             T temp = array[largest];
-            array[largest] = array[i];
-            array[i] = temp;
+            array[largest] = array[rootNodeIndex];
+            array[rootNodeIndex] = temp;
 
-            toHeap(array, n, largest, begin, end);
+            toHeap(array, heapSize, largest, begin, end);
         }
     }
 
-    private static <T extends Comparable<T>> void toHeap(T array[], int n, int i){
-        int largest = i;
-        int left = 2 * i + 1;
-        int right = 2 * i + 2;
+    private static <T extends Comparable<T>> void toHeap(T array[], int heapSize, int rootNodeIndex){
+        int largest = rootNodeIndex;
+        int left = 2 * rootNodeIndex + 1;
+        int right = 2 * rootNodeIndex + 2;
 
-        if(left < n && array[largest].compareTo(array[left]) < 0){
+        if(left < heapSize && array[largest].compareTo(array[left]) < 0){
             largest = left;
         }
 
-        if(right < n && array[largest].compareTo(array[right]) < 0){
+        if(right < heapSize && array[largest].compareTo(array[right]) < 0){
             largest = right;
         }
 
-        if(largest != i){
+        if(largest != rootNodeIndex){
             T temp = array[largest];
-            array[largest] = array[i];
-            array[i] = temp;
+            array[largest] = array[rootNodeIndex];
+            array[rootNodeIndex] = temp;
 
-            toHeap(array, n, largest);
+            toHeap(array, heapSize, largest);
         }
     }
 
@@ -434,25 +432,25 @@ public class EffectiveSort{
         }
     }
 
-    private static <T extends Comparable<? super T>> void toHeap(Vector<T> vector, int n, int i){
-        int largest = i;
-        int left = 2 * i + 1;
-        int right = 2 * i + 2;
+    private static <T extends Comparable<? super T>> void toHeap(Vector<T> vector, int heapSize, int rootNodeIndex){
+        int largest = rootNodeIndex;
+        int left = 2 * rootNodeIndex + 1;
+        int right = 2 * rootNodeIndex + 2;
 
-        if(left < n && vector.get(largest).compareTo(vector.get(left)) < 0){
+        if(left < heapSize && vector.get(largest).compareTo(vector.get(left)) < 0){
             largest = left;
         }
 
-        if(right < n && vector.get(largest).compareTo(vector.get(right)) < 0){
+        if(right < heapSize && vector.get(largest).compareTo(vector.get(right)) < 0){
             largest = right;
         }
 
-        if(largest != i){
+        if(largest != rootNodeIndex){
             T temp = vector.get(largest);
-            vector.set(largest, vector.get(i));
-            vector.set(i, temp);
+            vector.set(largest, vector.get(rootNodeIndex));
+            vector.set(rootNodeIndex, temp);
 
-            toHeap(vector, n, largest);
+            toHeap(vector, heapSize, largest);
         }
     }
 }

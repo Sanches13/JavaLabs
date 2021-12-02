@@ -1,55 +1,46 @@
-public class TestLinSort{
+import java.util.Arrays;
+
+public class TestLinSort {
+
+    public static int[] generateRandomArray(){
+        int randomArray[] = new int[25];
+        for(int i = 0; i < randomArray.length; i++)
+            randomArray[i] = (int) (Math.random() * 10000);
+        return randomArray;
+    }
+
     public static void main(String[] args) {
-        int input[] = new int[25];
+        int input[] = generateRandomArray();
 
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < input.length; i++) {
-            input[i] = (int) (Math.random() * 10000);
-            System.out.print(input[i] + " ");
-        }
-        System.out.println();
+        System.out.println(Arrays.toString(input));
 
         LinSort.LSD(input);
 
         System.out.println("Data sorted by LSD sort:");
-        for(int i = 0; i < input.length; i++)
-            System.out.print(input[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(input) + "\n");
 
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < input.length; i++) {
-            input[i] = (int) (Math.random() * 10000);
-            System.out.print(input[i] + " ");
-        }
-        System.out.println();
+        input = generateRandomArray();
+        System.out.println(Arrays.toString(input));
 
         LinSort.MSD(input);
 
         System.out.println("Data sorted by MSD sort:");
-        for(int i = 0; i < input.length; i++)
-            System.out.print(input[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(input) + "\n");
 
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < input.length; i++) {
-            input[i] = (int) (Math.random() * 10000);
-            System.out.print(input[i] + " ");
-        }
-        System.out.println();
+        input = generateRandomArray();
+        System.out.println(Arrays.toString(input));
 
         LinSort.countingSort(input);
 
         System.out.println("Data sorted by counting sort:");
-        for(int i = 0; i < input.length; i++)
-            System.out.print(input[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(input) + "\n");
 
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < input.length; i++) {
-            input[i] = (int) (Math.random() * 10000);
-            System.out.print(input[i] + " ");
-        }
-        System.out.println();
+        input = generateRandomArray();
+        System.out.println(Arrays.toString(input));
 
         try {
             LinSort.LSDSequence(input, 1, 23);
@@ -58,16 +49,11 @@ public class TestLinSort{
             System.out.println(e);
         }
         System.out.println("Data sequence [1;23] sorted by LSD sort:");
-        for(int i = 0; i < input.length; i++)
-            System.out.print(input[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(input) + "\n");
 
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < input.length; i++) {
-            input[i] = (int) (Math.random() * 10000);
-            System.out.print(input[i] + " ");
-        }
-        System.out.println();
+        input = generateRandomArray();
+        System.out.println(Arrays.toString(input));
 
         try {
             LinSort.MSDSequence(input, 1, 23);
@@ -75,17 +61,13 @@ public class TestLinSort{
         catch(Exception e){
             System.out.println(e);
         }
+
         System.out.println("Data sequence [1;23] sorted by MSD sort:");
-        for(int i = 0; i < input.length; i++)
-            System.out.print(input[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(input) + "\n");
 
         System.out.println("Random array with values from 0 to 10000:");
-        for(int i = 0; i < input.length; i++) {
-            input[i] = (int) (Math.random() * 10000);
-            System.out.print(input[i] + " ");
-        }
-        System.out.println();
+        input = generateRandomArray();
+        System.out.println(Arrays.toString(input));
 
         try {
             LinSort.countingSortSequence(input, 1, 23);
@@ -93,9 +75,8 @@ public class TestLinSort{
         catch(Exception e){
             System.out.println(e);
         }
+
         System.out.println("Data sequence [1;23] sorted by counting sort:");
-        for(int i = 0; i < input.length; i++)
-            System.out.print(input[i] + " ");
-        System.out.println();
+        System.out.println(Arrays.toString(input) + "\n");
     }
 }
