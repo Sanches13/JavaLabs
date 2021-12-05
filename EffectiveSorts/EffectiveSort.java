@@ -2,39 +2,65 @@ import java.util.Vector;
 
 public class EffectiveSort{
 
+    private static void swap(int array[], int i, int j){
+        int tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
+    }
+
+    private static <T extends Comparable<T>> void swap(T array[], int i, int j){
+        T tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
+    }
+
+    private static <T extends Comparable<? super T>> void swap(Vector<T> vector, int i, int j){
+        T tmp = vector.get(i);
+        vector.set(i, vector.get(j));
+        vector.set(j, tmp);
+    }
+
     public static void quickSort(int array[]) throws Exception {
         quickSort(array, 0, array.length - 1);
     }
 
-    public static void quickSort(int array[], int begin, int end) throws Exception{
-        if(begin < 0 || begin >= end || end >= array.length)
-            throw new Exception("Check your indices!");
+    private static int partition(int array[], int begin, int end){
+        int pivot = array[end];
+        int i = begin - 1;
 
-        int middle = begin + (end - begin) / 2;
-
-        int left = begin;
-        int right = end;
-        int middleElement = array[middle];
-
-        while(left <= right){
-            while(array[left] < middleElement)
-                left++;
-            while(array[right] > middleElement)
-                right--;
-
-            if(left <= right){
-                int swap = array[left];
-                array[left] = array[right];
-                array[right] = swap;
-                left++;
-                right--;
+        for(int j = begin; j < end; j++){
+            if(array[j] < pivot){
+                i++;
+                swap(array, i, j);
             }
         }
+        swap(array, (i + 1), end);
+        return (i + 1);
+    }
 
-        if(begin < right)
-            quickSort(array, begin, right);
-        if(left < end)
-            quickSort(array, left, end);
+    public static void quickSort(int array[], int begin, int end) throws Exception{
+        if(begin < 0 || end >= array.length)
+            throw new Exception("Check your indices!");
+
+        if(begin < end){
+            int p = partition(array, begin, end);
+            quickSort(array, begin, p - 1);
+            quickSort(array, p + 1, end);
+        }
+    }
+
+    private static <T extends Comparable<T>> int partition(T array[], int begin, int end){
+        T pivot = array[end];
+        int i = begin - 1;
+
+        for(int j = begin; j < end; j++){
+            if(array[j].compareTo(pivot) < 0){
+                i++;
+                swap(array, i, j);
+            }
+        }
+        swap(array, (i + 1), end);
+        return (i + 1);
     }
 
     public static <T extends Comparable<T>> void quickSort(T array[]) throws Exception{
@@ -42,69 +68,41 @@ public class EffectiveSort{
     }
 
     public static <T extends Comparable<T>> void quickSort(T array[], int begin, int end) throws Exception{
-        if(begin < 0 || begin >= end || end >= array.length)
+        if(begin < 0 || end >= array.length)
             throw new Exception("Check your indices!");
 
-        int middle = begin + (end - begin) / 2;
-
-        int left = begin;
-        int right = end;
-        T middleElement = array[middle];
-
-        while(left <= right){
-            while(array[left].compareTo(middleElement) < 0)
-                left++;
-            while(array[right].compareTo(middleElement) > 0)
-                right--;
-
-            if(left <= right){
-                T swap = array[left];
-                array[left] = array[right];
-                array[right] = swap;
-                left++;
-                right--;
-            }
+        if(begin < end){
+            int p = partition(array, begin, end);
+            quickSort(array, begin, p - 1);
+            quickSort(array, p + 1, end);
         }
-
-        if(begin < right)
-            quickSort(array, begin, right);
-        if(left < end)
-            quickSort(array, left, end);
     }
 
-    public static <T extends Comparable<? super T>> void quickSort(Vector<T> vector) throws Exception{
+    private static <T extends Comparable<? super T>> int partition(Vector<T> vector, int begin, int end){
+        T pivot = vector.get(end);
+        int i = begin - 1;
+        T tmp;
+
+        for(int j = begin; j < end; j++){
+            if(vector.get(j).compareTo(pivot) < 0){
+                i++;
+                swap(vector, i, j);
+            }
+        }
+        swap(vector, (i + 1), end);
+        return (i + 1);
+    }
+
+    public static <T extends Comparable<? super T>> void quickSort(Vector<T> vector){
         quickSort(vector, 0, vector.size() - 1);
     }
 
-    private static <T extends Comparable<? super T>> void quickSort(Vector<T> vector, int begin, int end) throws Exception{
-        if(begin < 0 || begin >= end || end >= vector.size())
-            throw new Exception("Check your indices!");
-
-        int middle = begin + (end - begin) / 2;
-
-        int left = begin;
-        int right = end;
-        T middleElement = vector.get(middle);
-
-        while(left <= right){
-            while(vector.get(left).compareTo(middleElement) < 0)
-                left++;
-            while(vector.get(right).compareTo(middleElement) > 0)
-                right--;
-
-            if(left <= right){
-                T swap = vector.get(left);
-                vector.set(left, vector.get(right));
-                vector.set(right, swap);
-                left++;
-                right--;
-            }
+    private static <T extends Comparable<? super T>> void quickSort(Vector<T> vector, int begin, int end){
+        if(begin < end){
+            int p = partition(vector, begin, end);
+            quickSort(vector, begin, p - 1);
+            quickSort(vector, p + 1, end);
         }
-
-        if(begin < right)
-            quickSort(vector, begin, right);
-        if(left < end)
-            quickSort(vector, left, end);
     }
 
     public static void mergeSort(int array[]) throws Exception{
@@ -139,8 +137,7 @@ public class EffectiveSort{
             rightPart[i] = array[middle + 1 + i];
         }
 
-        int left = 0;
-        int right = 0;
+        int left = 0, right = 0;
         int current = begin;
         while(left < leftSize && right < rightSize){
             if(leftPart[left] <= rightPart[right]){
@@ -299,10 +296,7 @@ public class EffectiveSort{
         }
 
         for(int i = array.length - 1; i > 0; i--){
-            int temp = array[i];
-            array[i] = array[0];
-            array[0] = temp;
-
+            swap(array, i, 0);
             toHeap(array, i, 0);
         }
     }
@@ -335,10 +329,7 @@ public class EffectiveSort{
         }
 
         if(largest != rootNodeIndex){
-            int temp = array[largest];
-            array[largest] = array[rootNodeIndex];
-            array[rootNodeIndex] = temp;
-
+            swap(array, largest, rootNodeIndex);
             toHeap(array, heapSize, largest);
         }
     }
@@ -349,10 +340,7 @@ public class EffectiveSort{
         }
 
         for(int i = array.length - 1; i > 0; i--){
-            T temp = array[i];
-            array[i] = array[0];
-            array[0] = temp;
-
+            swap(array, i, 0);
             toHeap(array, i, 0);
         }
     }
@@ -366,10 +354,7 @@ public class EffectiveSort{
         }
 
         for(int i = end - 1; i > begin; i--){
-            T temp = array[i];
-            array[i] = array[begin];
-            array[begin] = temp;
-
+            swap(array, i, begin);
             toHeap(array, i, begin, begin, end);
         }
     }
@@ -388,10 +373,7 @@ public class EffectiveSort{
         }
 
         if(largest != rootNodeIndex){
-            T temp = array[largest];
-            array[largest] = array[rootNodeIndex];
-            array[rootNodeIndex] = temp;
-
+            swap(array, largest, rootNodeIndex);
             toHeap(array, heapSize, largest, begin, end);
         }
     }
@@ -410,10 +392,7 @@ public class EffectiveSort{
         }
 
         if(largest != rootNodeIndex){
-            T temp = array[largest];
-            array[largest] = array[rootNodeIndex];
-            array[rootNodeIndex] = temp;
-
+            swap(array, largest, rootNodeIndex);
             toHeap(array, heapSize, largest);
         }
     }
@@ -424,10 +403,7 @@ public class EffectiveSort{
         }
 
         for(int i = vector.size() - 1; i > 0; i--){
-            T temp = vector.get(i);
-            vector.set(i, vector.get(0));
-            vector.set(0, temp);
-
+            swap(vector, i, 0);
             toHeap(vector, i, 0);
         }
     }
@@ -446,10 +422,7 @@ public class EffectiveSort{
         }
 
         if(largest != rootNodeIndex){
-            T temp = vector.get(largest);
-            vector.set(largest, vector.get(rootNodeIndex));
-            vector.set(rootNodeIndex, temp);
-
+            swap(vector, largest, rootNodeIndex);
             toHeap(vector, heapSize, largest);
         }
     }

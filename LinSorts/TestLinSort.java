@@ -43,7 +43,7 @@ public class TestLinSort {
         System.out.println(Arrays.toString(input));
 
         try {
-            LinSort.LSDSequence(input, 1, 23);
+            LinSort.LSD(input, 1, 23);
         }
         catch(Exception e){
             System.out.println(e);
@@ -56,7 +56,7 @@ public class TestLinSort {
         System.out.println(Arrays.toString(input));
 
         try {
-            LinSort.MSDSequence(input, 1, 23);
+            LinSort.MSD(input, 1, 23);
         }
         catch(Exception e){
             System.out.println(e);
@@ -70,7 +70,7 @@ public class TestLinSort {
         System.out.println(Arrays.toString(input));
 
         try {
-            LinSort.countingSortSequence(input, 1, 23);
+            LinSort.countingSort(input, 1, 23);
         }
         catch(Exception e){
             System.out.println(e);

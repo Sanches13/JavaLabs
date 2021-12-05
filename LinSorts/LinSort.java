@@ -95,12 +95,12 @@ public class LinSort{
         MSDSort(array, 0, array.length, digit);
     }
 
-    public static void MSDSort(int array[], int begin, int end, int currentDigit){
+    private static void MSDSort(int array[], int begin, int end, int currentDigit){
         if(end <= begin || currentDigit < 1)
             return;
 
-        int digits[] = new int[10 + 1];
-        for(int j = 0; j < 10 + 1; j++)
+        int digits[] = new int[11];
+        for(int j = 0; j < 11; j++)
             digits[j] = 0;
 
         for(int j = begin; j < end; j++) {
@@ -127,7 +127,7 @@ public class LinSort{
             digits[number]++;
         }
 
-        for (int j = begin; j < end; j++)
+        for(int j = begin; j < end; j++)
             array[j] = currentArray[j];
 
         for(int i = 0; i < 10; i++) {
@@ -140,7 +140,7 @@ public class LinSort{
         }
     }
 
-    public static void countingSortSequence(int array[], int begin, int end) throws Exception{
+    public static void countingSort(int array[], int begin, int end) throws Exception{
         if(begin < 0 || begin >= end || end >= array.length)
             throw new Exception("Check your indices");
 
@@ -154,7 +154,7 @@ public class LinSort{
             array[begin + i] = sequence[i];
     }
 
-    public static void LSDSequence(int array[], int begin, int end) throws Exception{
+    public static void LSD(int array[], int begin, int end) throws Exception{
         if(begin < 0 || begin >= end || end >= array.length)
             throw new Exception("Check your indices");
 
@@ -166,7 +166,7 @@ public class LinSort{
             array[begin + i] = sequence[i];
     }
 
-    public static void MSDSequence(int array[], int begin, int end) throws Exception{
+    public static void MSD(int array[], int begin, int end) throws Exception{
         if(begin < 0 || begin >= end || end >= array.length)
             throw new Exception("Check your indices");
 
