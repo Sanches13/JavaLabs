@@ -10,12 +10,12 @@ public class SimpleSort{
         if(begin < 0 || begin >= end || end >= array.length)
             throw new Exception("Check your indices!");
 
-        for(int i = begin; i < end; i++){
-            for(int j = i + 1; j < end + 1; j++){
-                if(array[i] > array[j]){
-                    int temp = array[i];
-                    array[i] = array[j];
-                    array[j] = temp;
+        for(int i = begin; i < end + 1; i++){
+            for(int j = begin; j < end; j++){
+                if(array[j] > array[j + 1]){
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                 }
             }
         }
@@ -29,24 +29,24 @@ public class SimpleSort{
         if(begin < 0 || begin >= end || end >= array.length)
             throw new Exception("Check your indices!");
 
-        for(int i = begin; i < end; i++){
-            for(int j = i + 1; j < end + 1; j++){
-                if(array[i].compareTo(array[j]) > 0){
-                    T temp = array[i];
-                    array[i] = array[j];
-                    array[j] = temp;
+        for(int i = begin; i < end + 1; i++){
+            for(int j = begin; j < end; j++){
+                if(array[j].compareTo(array[j + 1]) > 0){
+                    T temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                 }
             }
         }
     }
 
     public static <T extends Comparable<? super T>> void bubbleSort(Vector<T> vector){
-        for(int i = 0; i < vector.size() - 1; i++){
-            for(int j = i + 1; j < vector.size(); j++){
-                if(vector.get(i).compareTo(vector.get(j)) > 0){
-                    T temp = vector.get(i);
-                    vector.set(i, vector.get(j));
-                    vector.set(j, temp);
+        for(int i = 0; i < vector.size(); i++){
+            for(int j = 0; j < vector.size() - 1; j++){
+                if(vector.get(j).compareTo(vector.get(j + 1)) > 0){
+                    T temp = vector.get(j);
+                    vector.set(j, vector.get(j + 1));
+                    vector.set(j + 1, temp);
                 }
             }
         }
@@ -61,11 +61,13 @@ public class SimpleSort{
             throw new Exception("Check your indices!");
 
         for(int i = begin + 1; i < end + 1; i++){
-            for(int j = i; j > begin && array[j] < array[j - 1]; j--){
-                int temp = array[j];
-                array[j] = array[j - 1];
-                array[j - 1] = temp;
+            int currentElement = array[i];
+            int j = i - 1;
+            while(j >= begin && array[j] > currentElement){
+                array[j + 1] = array[j];
+                j--;
             }
+            array[j + 1] = currentElement;
         }
     }
 
@@ -78,21 +80,25 @@ public class SimpleSort{
             throw new Exception("Check your indices!");
 
         for(int i = begin + 1; i < end + 1; i++){
-            for(int j = i; j > begin && (array[j].compareTo(array[j - 1]) < 0); j--){
-                T temp = array[j];
-                array[j] = array[j - 1];
-                array[j - 1] = temp;
+            T currentElement = array[i];
+            int j = i - 1;
+            while(j >= begin && array[j].compareTo(currentElement) > 0){
+                array[j + 1] = array[j];
+                j--;
             }
+            array[j + 1] = currentElement;
         }
     }
 
     public static <T extends Comparable<? super T>> void insertionSort(Vector<T> vector){
         for(int i = 1; i < vector.size(); i++){
-            for(int j = i; j > 0 && vector.get(j).compareTo(vector.get(j - 1)) < 0; j--){
-                T temp = vector.get(j);
-                vector.set(j, vector.get(j - 1));
-                vector.set(j - 1, temp);
+            T currentElement = vector.get(i);
+            int j = i - 1;
+            while(j >= 0 && vector.get(j).compareTo(currentElement) > 0){
+                vector.set(j + 1, vector.get(j));
+                j--;
             }
+            vector.set(j + 1, currentElement);
         }
     }
 
